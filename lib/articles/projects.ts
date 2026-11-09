@@ -25,7 +25,7 @@ export const PROJECTS: Project[] = [
   {
     id: "advocaid",
     key: "advoc",
-    name: "AdvocAid",
+    name: "AdvocAid PH",
     cat: "Advocacy",
     color: "--advoc",
     short: "Know your rights and where to turn for legal help.",

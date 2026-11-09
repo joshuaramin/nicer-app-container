@@ -39,11 +39,11 @@ export const PROJECTS: Project[] = [
   {
     id: "advocaid",
     key: "advoc",
-    name: "AdvocAid",
+    name: "AdvocAid PH",
     cat: "Advocacy",
     color: "--advoc",
     short: "Know your rights and where to turn for legal help.",
-    long: "AdvocAid explains everyday rights in plain language and points people to the right office to ask for help.",
+    long: "AdvocAid PH explains everyday rights in plain language and points people to the right office to ask for help.",
     feats: [
       "Short explainers on common rights",
       "Step-by-step guides for filing complaints",

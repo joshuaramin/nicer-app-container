@@ -41,7 +41,7 @@ export const APPS: AppInfo[] = [
     id: "advocaid",
     key: "advoc",
     image: "/images/advocaidph.png",
-    name: "AdvocAid",
+    name: "AdvocAid PH",
     cat: "Advocacy",
     color: "--advoc",
     tag: "Awareness",

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Icon from "@/components/Icon";
 import { APPS } from "@/lib/apps";
-import { PROJECTS, getProject } from "@/lib/projects";
+import { getProject } from "@/lib/projects";
 import Image from "next/image";
 
 type Props = { params: Promise<{ id: string }> };
@@ -31,8 +31,7 @@ export default async function ProjectPage({ params }: Props) {
 
       <section className="proj-hero">
         <div className="ico">
-          <Image src={p.image} alt={""} height={26} width={26} />
-          {/* {p.url} */}
+          <Image className="proj-img" src={p.image} alt="" height={44} width={44} />
         </div>
         <h1>{p.name}</h1>
         <p>{p.long}</p>
@@ -41,6 +40,18 @@ export default async function ProjectPage({ params }: Props) {
             <span key={m}>{m}</span>
           ))}
         </div>
+        {p.url ? (
+          <a
+            className="btn sun"
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open {p.name}
+          </a>
+        ) : (
+          <p className="note">The link for {p.name} is coming soon.</p>
+        )}
       </section>
 
       <section className="proj-card">
@@ -53,19 +64,6 @@ export default async function ProjectPage({ params }: Props) {
           ))}
         </ul>
       </section>
-
-      {p.url ? (
-        <a
-          className="btn sun"
-          href={p.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open {p.name}
-        </a>
-      ) : (
-        <p className="note">The link for {p.name} is coming soon.</p>
-      )}
     </div>
   );
 }

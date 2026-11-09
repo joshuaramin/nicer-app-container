@@ -20,7 +20,7 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     shortcuts: [
       { name: "Health PH+", url: "/apps/health-ph" },
-      { name: "AdvocAid", url: "/apps/advocaid" },
+      { name: "AdvocAid PH", url: "/apps/advocaid" },
       { name: "Bantay Lamok", url: "/apps/bantay-lamok" },
       { name: "AI Kasalig", url: "/apps/ai-kasalig" },
     ],
