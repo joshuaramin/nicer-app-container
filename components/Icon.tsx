@@ -10,6 +10,8 @@ const P: Record<string, React.ReactNode> = {
   back: <path d="M15 5l-7 7 7 7" />,
   arrow: <path d="M5 12h14M13 6l6 6-6 6" />,
   moon: <path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z" />,
+  article: <path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3" />,
+  external: <path d="M7 17 17 7M8 7h9v9" />,
   download: <path d="M12 3v12M7 10l5 5 5-5M4 21h16" />,
 };
 

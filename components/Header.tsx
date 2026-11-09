@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Icon from "./Icon";
+import { useOnline } from "./useOnline";
 
-type InstallEvent = Event & { prompt: () => Promise<void>; userChoice: Promise<{ outcome: string }> };
+type InstallEvent = Event & { prompt: () => Promise<void> };
 
 export default function Header() {
   const [installEvt, setInstallEvt] = useState<InstallEvent | null>(null);
-  const [online, setOnline] = useState(true);
+  const online = useOnline();
 
   useEffect(() => {
     const onPrompt = (e: Event) => {
@@ -15,18 +16,11 @@ export default function Header() {
       setInstallEvt(e as InstallEvent);
     };
     const onInstalled = () => setInstallEvt(null);
-    const up = () => setOnline(true);
-    const down = () => setOnline(false);
-    setOnline(navigator.onLine);
     window.addEventListener("beforeinstallprompt", onPrompt);
     window.addEventListener("appinstalled", onInstalled);
-    window.addEventListener("online", up);
-    window.addEventListener("offline", down);
     return () => {
       window.removeEventListener("beforeinstallprompt", onPrompt);
       window.removeEventListener("appinstalled", onInstalled);
-      window.removeEventListener("online", up);
-      window.removeEventListener("offline", down);
     };
   }, []);
 
@@ -37,37 +31,54 @@ export default function Header() {
       (!r.dataset.theme && matchMedia("(prefers-color-scheme: dark)").matches);
     const next = dark ? "light" : "dark";
     r.dataset.theme = next;
-    try { localStorage.setItem("nicer-theme", next); } catch {}
-  }
-
-  async function install() {
-    if (!installEvt) return;
-    await installEvt.prompt();
-    setInstallEvt(null);
+    try {
+      localStorage.setItem("nicer-theme", next);
+    } catch {}
   }
 
   return (
-    <div className="top">
-      <div className="brand">
-        <div className="logo">N</div>
-        <div>
-          <b>NICER App Corner</b>
-          <span className="status">
-            <i className={"dot" + (online ? "" : " off")} />
-            {online ? "Online" : "Offline mode"}
+    <header className="header">
+      <div className="wrap header-in">
+        <a
+          className="brand"
+          href="#top"
+          aria-label="NICER App Corner, top of page"
+        >
+          <span className="logo">N</span>
+          <span>
+            <b>NICER App Corner</b>
+            <span className="status">
+              <i className={"dot" + (online ? "" : " off")} />
+              {online ? "Online" : "Offline mode"}
+            </span>
           </span>
+        </a>
+        <nav className="links" aria-label="Page sections">
+          <a href="#projects">Projects</a>
+          <a href="#install">Install</a>
+          <a href="#about">About</a>
+        </nav>
+        <div className="topbtns">
+          {installEvt && (
+            <button
+              className="iconbtn wide"
+              onClick={async () => {
+                await installEvt.prompt();
+                setInstallEvt(null);
+              }}
+            >
+              <Icon name="download" size={18} /> <span>Install</span>
+            </button>
+          )}
+          <button
+            className="iconbtn"
+            onClick={toggleTheme}
+            aria-label="Switch light or dark theme"
+          >
+            <Icon name="moon" size={20} />
+          </button>
         </div>
       </div>
-      <div className="topbtns">
-        {installEvt && (
-          <button className="iconbtn" onClick={install} aria-label="Install app">
-            <Icon name="download" size={20} />
-          </button>
-        )}
-        <button className="iconbtn" onClick={toggleTheme} aria-label="Switch light or dark theme">
-          <Icon name="moon" size={20} />
-        </button>
-      </div>
-    </div>
+    </header>
   );
 }
