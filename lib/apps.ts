@@ -1,4 +1,3 @@
-
 export type AppInfo = {
   id: string;
   key: "health" | "advoc" | "lamok" | "ai";
@@ -18,14 +17,14 @@ export const APPS: AppInfo[] = [
   {
     id: "health-ph",
     key: "health",
-    image: "/images/health-ph.png",
+    image: "/images/health-ph.logo.png",
     name: "Health PH+",
     cat: "Health",
     color: "--health",
     tag: "Care and wellness",
     short: "HealthPH: Intelligent Disease Surveillance using Social Media",
     long: "The Philippines' Pulse on Health",
-    url: "https://aiproject-nationalu.com/#/projects/healthph",
+    url: "https://healthph.onrender.com/",
     feats: [
       "Daily check-in for water, sleep, movement and meals",
       "Plain-language health tips in English and Filipino",
@@ -46,7 +45,8 @@ export const APPS: AppInfo[] = [
     cat: "Advocacy",
     color: "--advoc",
     tag: "Awareness",
-    short: "AdvocAid PH Project: Transforming Digital Conversations into HIV Intelligence",
+    short:
+      "AdvocAid PH Project: Transforming Digital Conversations into HIV Intelligence",
     long: "Enhancing public health surveillance through AI-driven multilingual and geospatial analysis of social media discourse.",
     url: "https://dost-ap8f.vercel.app/?fbclid=IwY2xjawVeDUFleHRuA2FlbQIxMQBwZG9mBHNydGMGYXBwX2lkATAAAR_wG__PUbLRfD5vO6V-0GilgSaMhi_JdnzeSTmImRWy3oBf0jWWHgXYd1WOzQ_aem_HtfsBqe95G4of7dNASfuCg",
     feats: [
@@ -60,12 +60,13 @@ export const APPS: AppInfo[] = [
   {
     id: "bantay-lamok",
     key: "lamok",
-    image: "/images/bantay-lamok.png",
+    image: "/images/bantay-lamok-logo.png",
     name: "Bantay Lamok",
     cat: "Health",
     color: "--lamok",
     tag: "Dengue watch",
-    short: "Bantay Lamok: Deep Learning Models for Predicting Mosquito Density and Disease Outbreaks on Crowdsourcing and Social Data",
+    short:
+      "Bantay Lamok: Deep Learning Models for Predicting Mosquito Density and Disease Outbreaks on Crowdsourcing and Social Data",
     long: "A community-driven public health platform using AI, NLP, geospatial analytics, and citizen reports to support early detection and response to mosquito-related disease risks.",
     url: "https://aiproject-nationalu.com/#/projects/bantay-lamok",
     feats: [
@@ -83,7 +84,7 @@ export const APPS: AppInfo[] = [
   {
     id: "ai-kasalig",
     key: "ai",
-    image: "/images/ai-kasalig.png",
+    image: "/images/ai-kasalig-logo.png",
     name: "AI Kasalig",
     cat: "AI",
     color: "--ai",
@@ -97,15 +98,10 @@ export const APPS: AppInfo[] = [
       "Hands you off to Health PH+, AdvocAid or Bantay Lamok",
       "Asks before it shares anything",
     ],
-    meta: [
-      "Responsible AI",
-      "AI Governance",
-      "Healthcare",
-    ],
+    meta: ["Responsible AI", "AI Governance", "Healthcare"],
   },
 ];
 
 export const CATS = ["All", "Health", "Advocacy", "AI"] as const;
 
-export const getApp = (id: string) =>
-  APPS.find((a) => a.id === id);
+export const getApp = (id: string) => APPS.find((a) => a.id === id);
